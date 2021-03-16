@@ -14,7 +14,7 @@
 
 
 # Non-Functional Requirements 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 1. <Music swapping during the levels shall be immediate and have no lag between them.>
 2. <User spamming actions shall have no discernable negative effect on the software (such as lagging).>

@@ -1,8 +1,7 @@
 # Overview 
-We wanted to add our own original twist on top of a classic timeless game, Tetris. The goal is to add more shapes,a personal choice of different music, specific powerups, and more. We want the game to feel like a modern spin that would be produced from a company that already rehashes out old classics, perhaps like nintendo recreating mario.
-
+We wanted to add our own original twist on top of a classic timeless game Tetris. The goal is to add more shapes,a personal choice of different music
+specific powerups, and more. We want the game to feel like a modern spin that would be produced from a company that already rehashes out old classics perhaps like nintendo recreating mario.
 # Functional Requirements 
-
 1. 1.0 The user shall be able to open settings in order to access different game functions and difficulties.
     1. 1.1 The user shall be allowed to manually set the music in the beginning of the game.
     1. 1.2 The software shall allow users to set an original mode if they wish to play  the original Tetris without all the add-ons.

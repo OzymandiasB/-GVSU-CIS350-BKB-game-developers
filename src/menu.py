@@ -21,7 +21,8 @@ bg3 = pygame.transform.scale(bg3, (600, 800))
 # START UP THE SOUNDTRACK BABBYYYYY
 pygame.mixer.init()
 pygame.mixer.music.load("koroben.mp3")
-
+# create array of all songs
+songs = ["koroben.mp3", "farewell8bit.mp3"]
 # set up fonts to use
 small_font = pygame.font.SysFont(None, 30)
 big_Font = pygame.font.SysFont(None, 100)
@@ -84,10 +85,9 @@ def main_menu():
         pygame.draw.rect(screen, (150, 0, 0), sec_but)
         draw_text('Game Manual', small_font, (255, 255, 255), screen, 50, 200)
         pygame.draw.rect(screen, (150, 0, 0), opt_but)
-        draw_text('Game Manual', small_font, (255, 255, 255), screen, 50, 300)
+        draw_text('Game Options', small_font, (255, 255, 255), screen, 50, 300)
 
         click = False
-
         # Second Set Navigation Controls
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -127,14 +127,56 @@ def manual():
         master_ticker.tick(60)
 
 
+def change_song(loop_inc):
+    if loop_inc >= len(songs):
+        pygame.mixer.music.fadeout(30)
+        pygame.mixer.music.unload()
+        pygame.mixer.music.load(songs[0])
+        pygame.mixer.music.play()
+        return 0
+    else:
+        pygame.mixer.music.fadeout(30)
+        pygame.mixer.music.unload()
+        pygame.mixer.music.load(songs[loop_inc])
+        pygame.mixer.music.play()
+        return loop_inc
+
+
+
 def options():
+    click = False
+    loop_inc = 0
     running = True
     screen.fill((0, 0, 0))
     screen.blit(bg3, (0, 0))
+
     while running:
+        # get loc of mouse
+        mx, my = pygame.mouse.get_pos()
+        # draw text
         draw_text('Change music preset!', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('start Legacy edition!', small_font, (0, 255, 255), screen, 20, 60)
-        running = eventCheck()
+        music_but = pygame.Rect(50, 300, 200, 50)
+        pygame.draw.rect(screen, (150, 0, 0), music_but)
+        if music_but.collidepoint((mx,my)):
+            if click:
+                loop_inc = loop_inc + 1
+                loop_inc = change_song(loop_inc)
+
+        draw_text('Change Music', small_font, (0, 255, 255), screen, 50, 300)
+        click = False
+        # Manual Event check for secondary buttons
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
         pygame.display.update()
         master_ticker.tick(60)
 

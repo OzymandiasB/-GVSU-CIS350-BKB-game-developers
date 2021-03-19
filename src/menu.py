@@ -6,17 +6,20 @@ from pygame.locals import *
 master_ticker = pygame.time.Clock()
 pygame.init()
 pygame.display.set_caption('Stalin')
-screen = pygame.display.set_mode((600, 800), 0, 32)
+screen = pygame.display.set_mode((1024, 1000), 0, 32)
 
 # importing images
 bg = pygame.image.load("retro1.jpeg")
-bg = pygame.transform.scale(bg, (600, 800))
+bg = pygame.transform.scale(bg, (1024, 1000))
 
 bg2 = pygame.image.load("retro2.jpeg")
-bg2 = pygame.transform.scale(bg2, (600, 800))
+bg2 = pygame.transform.scale(bg2, (1024, 1000))
 
 bg3 = pygame.image.load("retro3.jpeg")
-bg3 = pygame.transform.scale(bg3, (600, 800))
+bg3 = pygame.transform.scale(bg3, (1024, 1000))
+
+play_sprite = pygame.image.load("play.png").convert_alpha()
+play_sprite = pygame.transform.scale(play_sprite, (150, 150))
 
 # START UP THE SOUNDTRACK BABBYYYYY
 pygame.mixer.init()
@@ -51,9 +54,8 @@ def eventCheck():
     return True
 
 
-def main_menu():
+def main_menu(loop_inc):
     pygame.mixer.music.play()
-
     while True:
         # keep resetting and adding in bgImage
         screen.fill((0, 0, 0))
@@ -78,7 +80,7 @@ def main_menu():
         if opt_but.collidepoint((mx, my)):
             if click:
                 # open options
-                options()
+                options(loop_inc)
 
         pygame.draw.rect(screen, (150, 0, 0), first_but)
         draw_text('Play Game', small_font, (255, 255, 255), screen, 50, 100)
@@ -106,6 +108,7 @@ def main_menu():
 
 
 def game():
+    # insert call into game here
     running = True
     screen.fill((0, 0, 0))
     screen.blit(bg2, (0, 0))
@@ -142,10 +145,8 @@ def change_song(loop_inc):
         return loop_inc
 
 
-
-def options():
+def options(loop_inc):
     click = False
-    loop_inc = 0
     running = True
     screen.fill((0, 0, 0))
     screen.blit(bg3, (0, 0))
@@ -156,14 +157,16 @@ def options():
         # draw text
         draw_text('Change music preset!', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('start Legacy edition!', small_font, (0, 255, 255), screen, 20, 60)
-        music_but = pygame.Rect(50, 300, 200, 50)
-        pygame.draw.rect(screen, (150, 0, 0), music_but)
-        if music_but.collidepoint((mx,my)):
+        # Create music Button
+        music_but = pygame.Rect(75, 250, 150, 150)
+        #pygame.draw.rect(screen, (0, 150, 0), music_but)
+        screen.blit(play_sprite, (50, 250))
+        if music_but.collidepoint((mx, my)):
             if click:
                 loop_inc = loop_inc + 1
                 loop_inc = change_song(loop_inc)
 
-        draw_text('Change Music', small_font, (0, 255, 255), screen, 50, 300)
+        #draw_text('Change Music', small_font, (0, 255, 255), screen, 50, 300)
         click = False
         # Manual Event check for secondary buttons
         for event in pygame.event.get():
@@ -172,8 +175,7 @@ def options():
                 sys.exit()
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
+                    running = False
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
@@ -181,4 +183,5 @@ def options():
         master_ticker.tick(60)
 
 
-main_menu()
+loop_inc = 0
+main_menu(loop_inc)

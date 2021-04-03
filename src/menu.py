@@ -159,14 +159,14 @@ def options(loop_inc):
         draw_text('start Legacy edition!', small_font, (0, 255, 255), screen, 20, 60)
         # Create music Button
         music_but = pygame.Rect(75, 250, 150, 150)
-        #pygame.draw.rect(screen, (0, 150, 0), music_but)
+        # pygame.draw.rect(screen, (0, 150, 0), music_but)
         screen.blit(play_sprite, (50, 250))
         if music_but.collidepoint((mx, my)):
             if click:
                 loop_inc = loop_inc + 1
                 loop_inc = change_song(loop_inc)
 
-        #draw_text('Change Music', small_font, (0, 255, 255), screen, 50, 300)
+        # draw_text('Change Music', small_font, (0, 255, 255), screen, 50, 300)
         click = False
         # Manual Event check for secondary buttons
         for event in pygame.event.get():

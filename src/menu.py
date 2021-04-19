@@ -1,6 +1,7 @@
 import pygame
 import sys
 from pygame.locals import *
+import game
 
 # Setting up window
 master_ticker = pygame.time.Clock()
@@ -72,7 +73,7 @@ def main_menu(loop_inc):
         if first_but.collidepoint((mx, my)):
             if click:
                 # start game
-                game()
+                game_menu()
         if sec_but.collidepoint((mx, my)):
             if click:
                 # open manual
@@ -107,11 +108,13 @@ def main_menu(loop_inc):
         master_ticker.tick(60)
 
 
-def game():
+def game_menu():
     # insert call into game here
     running = True
     screen.fill((0, 0, 0))
     screen.blit(bg2, (0, 0))
+    engine = game.Game()
+
     while running:
         draw_text('game', small_font, (255, 255, 255), screen, 20, 20)
         running = eventCheck()

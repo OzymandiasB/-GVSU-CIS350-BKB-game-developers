@@ -107,6 +107,8 @@ def main_menu(loop_inc):
                 if event.button == 1:
                     click = True
 
+        draw_text('Developed by BKB Game Developers', small_font, (255, 255, 255), screen, 50, 750)
+
         pygame.display.update()
         master_ticker.tick(60)
 

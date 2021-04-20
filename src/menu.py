@@ -2,6 +2,9 @@ import pygame
 import sys
 from pygame.locals import *
 import game
+pygame.draw
+
+
 
 # Setting up window
 master_ticker = pygame.time.Clock()
@@ -126,8 +129,41 @@ def manual():
     running = True
     screen.fill((0, 0, 0))
     while running:
-        draw_text('Game Manual', small_font, (0, 255, 255), screen, 20, 20)
+
+        draw_text('Game Manual (Press ESC to go back)', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('We have 3 new piece types as shown below', small_font, (0, 255, 255), screen, 20, 60)
+        draw_text('The Pointer Shape!', small_font, (0,255,255), screen, 20, 100)
+        draw_text('The C shape!', small_font, (0, 255, 255), screen, 20, 270)
+        draw_text('The J-Block Shape!', small_font, (0, 255, 255), screen, 20, 500)
+        draw_text('This updated version of Tetris is simple to play! Just use your arrow keys to move left and right ', small_font, (0, 255, 255), screen, 20, 715)
+        draw_text('to move falling blocks in the place you wish them to fall! ', small_font, (0, 255, 255), screen, 20, 740)
+        draw_text('These new blocks that are now implemented make the game more fun and stretch your brain a little! ', small_font, (0, 255, 255), screen, 20, 780)
+
+
+        # pointer shape picture
+
+        pygame.draw.rect(screen, (0,255,255) , [75,165,50,50])
+
+
+        # C shape picture
+
+        pygame.draw.rect(screen, (0, 255, 255), [75, 325, 50, 150])
+        pygame.draw.rect(screen, (0, 255, 255), [75, 325, 150, 45]) # top
+        pygame.draw.rect(screen, (0, 255, 255), [75, 430, 150, 45]) # bottom
+
+        # J-Block shape picture
+
+        pygame.draw.rect(screen, (0, 255, 255), [75, 550, 50, 150])
+        pygame.draw.rect(screen, (0, 255, 255), [75, 655, 150, 45])
+        pygame.draw.rect(screen, (0, 255, 255), [175, 610, 50, 90])
+
+
+
+
+
+
+
+
         running = eventCheck()
         pygame.display.update()
         master_ticker.tick(60)

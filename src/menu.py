@@ -128,11 +128,14 @@ def game_menu():
 
 
 def manual():
+
     running = True
     screen.fill((0, 0, 0))
     while running:
 
-        draw_text('Game Manual (Press ESC to go back)', small_font, (0, 255, 255), screen, 20, 20)
+        mx, my = pygame.mouse.get_pos()
+
+        draw_text('Game Manual', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('We have 3 new piece types as shown below', small_font, (0, 255, 255), screen, 20, 60)
         draw_text('The Pointer Shape!', small_font, (0,255,255), screen, 20, 100)
         draw_text('The C shape!', small_font, (0, 255, 255), screen, 20, 270)
@@ -145,7 +148,6 @@ def manual():
         # pointer shape picture
 
         pygame.draw.rect(screen, (0,255,255) , [75,165,50,50])
-
 
         # C shape picture
 
@@ -160,8 +162,12 @@ def manual():
         pygame.draw.rect(screen, (0, 255, 255), [175, 610, 50, 90])
 
 
+    # back button implementation
+        back_but = pygame.Rect(775, 30, 200, 50)
+        pygame.draw.rect(screen, (0, 0, 255), back_but)
+        draw_text('ESC to Menu', small_font, (255, 255, 255), screen, 810, 45)
 
-
+    # back button logic
 
 
 
@@ -207,11 +213,11 @@ def options(loop_inc):
         screen.blit(play_sprite, (50, 250))
 
 
-        #display legacy button
+        # display legacy button
         pygame.draw.rect(screen, (0, 0, 255), legacy_but)
         draw_text('Legacy Mode', small_font, (255, 255, 255), screen, 50, 155)
 
-        #legacy button logic
+        # legacy button logic
         if legacy_but.collidepoint((mx, my)):
             if click:
                 return

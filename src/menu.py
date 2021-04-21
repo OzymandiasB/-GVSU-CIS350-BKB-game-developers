@@ -198,10 +198,25 @@ def options(loop_inc):
         # draw text
         draw_text('Change music preset!', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('start Legacy edition!', small_font, (0, 255, 255), screen, 20, 60)
+
+        # create legacy button
+        legacy_but = pygame.Rect(50, 150, 200, 50)
         # Create music Button
         music_but = pygame.Rect(75, 250, 150, 150)
         # pygame.draw.rect(screen, (0, 150, 0), music_but)
         screen.blit(play_sprite, (50, 250))
+
+
+        #display legacy button
+        pygame.draw.rect(screen, (0, 0, 255), legacy_but)
+        draw_text('Legacy Mode', small_font, (255, 255, 255), screen, 50, 155)
+
+        #legacy button logic
+        if legacy_but.collidepoint((mx, my)):
+            if click:
+                return
+
+
         if music_but.collidepoint((mx, my)):
             if click:
                 loop_inc = loop_inc + 1

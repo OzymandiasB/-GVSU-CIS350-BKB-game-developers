@@ -2,6 +2,9 @@ import pygame
 import sys
 from pygame.locals import *
 import game
+pygame.draw
+
+
 
 # Setting up window
 master_ticker = pygame.time.Clock()
@@ -107,6 +110,8 @@ def main_menu(loop_inc):
                 if event.button == 1:
                     click = True
 
+        draw_text('Developed by BKB Game Developers', small_font, (255, 255, 255), screen, 50, 750)
+
         pygame.display.update()
         master_ticker.tick(60)
 
@@ -133,11 +138,50 @@ def game_menu():
 
 
 def manual():
+
     running = True
     screen.fill((0, 0, 0))
     while running:
+
+        mx, my = pygame.mouse.get_pos()
+
         draw_text('Game Manual', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('We have 3 new piece types as shown below', small_font, (0, 255, 255), screen, 20, 60)
+        draw_text('The Pointer Shape!', small_font, (0,255,255), screen, 20, 100)
+        draw_text('The C shape!', small_font, (0, 255, 255), screen, 20, 270)
+        draw_text('The J-Block Shape!', small_font, (0, 255, 255), screen, 20, 500)
+        draw_text('This updated version of Tetris is simple to play! Just use your arrow keys to move left and right ', small_font, (0, 255, 255), screen, 20, 715)
+        draw_text('to move falling blocks in the place you wish them to fall! ', small_font, (0, 255, 255), screen, 20, 740)
+        draw_text('These new blocks that are now implemented make the game more fun and stretch your brain a little! ', small_font, (0, 255, 255), screen, 20, 780)
+
+
+        # pointer shape picture
+
+        pygame.draw.rect(screen, (0,255,255) , [75,165,50,50])
+
+        # C shape picture
+
+        pygame.draw.rect(screen, (0, 255, 255), [75, 325, 50, 150])
+        pygame.draw.rect(screen, (0, 255, 255), [75, 325, 150, 45]) # top
+        pygame.draw.rect(screen, (0, 255, 255), [75, 430, 150, 45]) # bottom
+
+        # J-Block shape picture
+
+        pygame.draw.rect(screen, (0, 255, 255), [75, 550, 50, 150])
+        pygame.draw.rect(screen, (0, 255, 255), [75, 655, 150, 45])
+        pygame.draw.rect(screen, (0, 255, 255), [175, 610, 50, 90])
+
+
+    # back button implementation
+        back_but = pygame.Rect(775, 30, 200, 50)
+        pygame.draw.rect(screen, (0, 0, 255), back_but)
+        draw_text('ESC to Menu', small_font, (255, 255, 255), screen, 810, 45)
+
+    # back button logic
+
+
+
+
         running = eventCheck()
         pygame.display.update()
         master_ticker.tick(60)
@@ -202,10 +246,25 @@ def options(loop_inc):
         # draw text
         draw_text('Change music preset!', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('start Legacy edition!', small_font, (0, 255, 255), screen, 20, 60)
+
+        # create legacy button
+        legacy_but = pygame.Rect(50, 150, 200, 50)
         # Create music Button
         music_but = pygame.Rect(75, 250, 150, 150)
         # pygame.draw.rect(screen, (0, 150, 0), music_but)
         screen.blit(play_sprite, (50, 250))
+
+
+        # display legacy button
+        pygame.draw.rect(screen, (0, 0, 255), legacy_but)
+        draw_text('Legacy Mode', small_font, (255, 255, 255), screen, 50, 155)
+
+        # legacy button logic
+        if legacy_but.collidepoint((mx, my)):
+            if click:
+                return
+
+
         if music_but.collidepoint((mx, my)):
             if click:
                 loop_inc = loop_inc + 1

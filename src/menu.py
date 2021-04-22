@@ -30,6 +30,9 @@ songs = ["koroben.mp3", "farewell8bit.mp3"]
 # set up fonts to use
 small_font = pygame.font.SysFont(None, 30)
 big_Font = pygame.font.SysFont(None, 100)
+# set up colors
+white = (255, 255, 255)
+grey = (128, 128, 128)
 
 
 # function to write text
@@ -116,10 +119,17 @@ def game_menu():
     engine = game.Game()
 
     while running:
+        if engine.shapes is None:
+            engine.new_piece()
         draw_text('game', small_font, (255, 255, 255), screen, 20, 20)
         running = eventCheck()
         pygame.display.update()
         master_ticker.tick(60)
+        # Draw grid on page
+        draw_grid(engine)
+        # As long as shape currently exists
+        if engine.shapes is not None:
+            draw_shapes(engine)
 
 
 def manual():
@@ -131,6 +141,38 @@ def manual():
         running = eventCheck()
         pygame.display.update()
         master_ticker.tick(60)
+
+
+# helper method that draws shapes
+def draw_shapes(eng):
+    shape_mat = 4  # length of shape matrix defined in shape class
+    for i in range(shape_mat):
+        for j in range(shape_mat):
+            # grab shape to run check on it
+            temp = eng.shapes.get_shape()
+            shape_check = (i * shape_mat) + j
+            # if the shapes area checks out, makes the coords for rect
+            if shape_check in temp:
+                loc_x = j + eng.shapes.x
+                loc_y = i + eng.shapes.y
+                # 190 is the grids start x location & 60 is grids y start loc
+                rect_coord = [(30 * loc_x) + 191, (30 * loc_y) + 61, 28, 28]
+                # draw rectangle that represents shape
+                pygame.draw.rect(screen, white, rect_coord)
+
+
+# Helper method to draw the grid
+def draw_grid(eng):
+    # Loop through size of grid
+    for i in range(eng.height):
+        for j in range(eng.width):
+            # 190 is where grid starts, 60 is y of where it starts
+            rect_coor = [(30 * j) + 190, 60 + (30 * i), 30, 30]
+            pygame.draw.rect(screen, grey, rect_coor, 1)
+            if eng.board[i][j] != 0:
+                # of there is a shape there
+                rect_coor = [eng.shapes.x + (30 * j) + 1, eng.shapes.y + (30 * i) + 1, 28, 29]
+                pygame.draw.rect(screen, grey, rect_coor)
 
 
 def change_song(loop_inc):

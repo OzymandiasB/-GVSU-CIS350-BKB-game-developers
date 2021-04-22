@@ -33,7 +33,7 @@ class Shape:
         self.shape_rotation = 0  # which rotation it is in (location in inner most shape array)
 
     # retrieve shape figure from shapes array
-    def get_figure(self):
+    def get_shape(self):
         return self.shapes[self.shape_type][self.shape_rotation]
 
     def rotate(self):

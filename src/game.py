@@ -6,7 +6,8 @@ import shape
 # class that controls the game menu
 class Game:
     level = 1
-    score = 0
+    # start score at 10 so power up works later on
+    score = 10
     board = []
     width = 10  # Taken from menu dimensions
     height = 20  # Taken from menu dimensions
@@ -61,7 +62,8 @@ class Game:
         while pt > 1:
             # scan through entire width of board, clearing out each element
             for w in range(self.width):
-                self.board[pt][w] = self.board[pt - 1][w]  # make spot on board empty
+                self.board[pt][w] = 0  # make spot on board empty
+            pt = pt - 1
 
     # Check to see if lines can be cleared,
     def check_lines(self):
@@ -82,8 +84,9 @@ class Game:
                 self.clear_lines(i)
         self.score = self.score + counter * 5
         # if the score is high enough trigger the power up
-        if self.score % 100:
+        if self.score % 100 == 0:
             self.power_up()
+            self.score = self.score * 2
 
     # Holds shape in place after dropping it.
     def lock_shape(self):

@@ -2,6 +2,8 @@ import pygame
 import sys
 from pygame.locals import *
 import game
+import os
+import time
 
 # Setting up window
 master_ticker = pygame.time.Clock()
@@ -82,6 +84,9 @@ def event_esc():
 
 
 def main_menu(loop_inc):
+    click = False
+    # second variable to track game over status
+    track_game = False
     pygame.mixer.music.play()
     while True:
         # keep resetting and adding in bgImage
@@ -90,7 +95,8 @@ def main_menu(loop_inc):
         draw_text('Main Menu', big_Font, (255, 255, 255), screen, 20, 20)
         # get mouse loc
         mx, my = pygame.mouse.get_pos()
-
+        if track_game:
+            draw_text('Game over, Press r to restart the game!', small_font, (0, 255, 255), screen, 350, 150)
         # create buttons
         first_but = pygame.Rect(50, 100, 200, 50)
         sec_but = pygame.Rect(50, 200, 200, 50)
@@ -99,7 +105,8 @@ def main_menu(loop_inc):
         if first_but.collidepoint((mx, my)):
             if click:
                 # start game
-                game_menu()
+                if game_menu():
+                    track_game = True
         if sec_but.collidepoint((mx, my)):
             if click:
                 # open manual
@@ -126,6 +133,10 @@ def main_menu(loop_inc):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+                if event.key == K_r:
+                    # code to restart the program from scratch
+                    # https://stackoverflow.com/questions/14907067/how-do-i-restart-a-program-based-on-user-input/30247200
+                    os.execl(sys.executable, '"{}"'.format(sys.executable), *sys.argv)
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
@@ -145,6 +156,7 @@ def game_menu():
     ticker = 0
     speed = 10
     while running:
+
         # set up a ticker to control the drop rate
         ticker = ticker + 1
         # if the user takes this long just reset
@@ -164,11 +176,21 @@ def game_menu():
         master_ticker.tick(60)
         screen.fill((0, 0, 0))
         screen.blit(bg2, (0, 0))
+        draw_text("score: " + str(engine.score), small_font, white, screen, 20, 60)
         # Draw grid on page
         draw_grid(engine)
+
         # As long as shape currently exists
         if engine.shapes is not None:
             draw_shapes(engine)
+        # check to see if game is over
+        if engine.game_over:
+            break
+
+    if engine.game_over:
+        return True
+    else:
+        return False
 
 
 def manual():
@@ -188,6 +210,9 @@ def manual():
                   740)
         draw_text('These new blocks that are now implemented make the game more fun and stretch your brain a little! ',
                   small_font, (0, 255, 255), screen, 20, 780)
+        draw_text(
+            'Also, there is a secret power. Every 100 points clears everything and adds 2x on your score!',
+            small_font, (80, 255, 255), screen, 20, 880)
 
         # pointer shape picture
 

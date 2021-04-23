@@ -117,11 +117,11 @@ def main_menu(loop_inc):
                 options(loop_inc)
 
         pygame.draw.rect(screen, (150, 0, 0), first_but)
-        draw_text('Play Game', small_font, (255, 255, 255), screen, 50, 100)
+        draw_text('Play Game', small_font, (255, 255, 255), screen, 95, 115)
         pygame.draw.rect(screen, (150, 0, 0), sec_but)
-        draw_text('Game Manual', small_font, (255, 255, 255), screen, 50, 200)
+        draw_text('Game Manual', small_font, (255, 255, 255), screen, 80, 215)
         pygame.draw.rect(screen, (150, 0, 0), opt_but)
-        draw_text('Game Options', small_font, (255, 255, 255), screen, 50, 300)
+        draw_text('Game Options', small_font, (255, 255, 255), screen, 80, 315)
 
         click = False
         # Second Set Navigation Controls
@@ -307,12 +307,38 @@ def options(loop_inc):
         legacy_but = pygame.Rect(50, 150, 200, 50)
         # Create music Button
         music_but = pygame.Rect(75, 250, 150, 150)
+        # create hard button
+        hard_but = pygame.Rect(50, 450, 200, 50)
+        # create easy button
+        easy_but = pygame.Rect(50, 600, 200, 50)
         # pygame.draw.rect(screen, (0, 150, 0), music_but)
         screen.blit(play_sprite, (50, 250))
 
+
         # display legacy button
         pygame.draw.rect(screen, (0, 0, 255), legacy_but)
-        draw_text('Legacy Mode', small_font, (255, 255, 255), screen, 50, 155)
+        draw_text('Legacy Mode', small_font, (255, 255, 255), screen, 90, 155)
+
+        # display hard button
+        pygame.draw.rect(screen, (0, 0, 255), hard_but)
+        draw_text('Hard Mode', small_font, (255, 255, 255), screen, 95, 465)
+
+        # display Easy button
+        pygame.draw.rect(screen, (0, 0, 255), easy_but)
+        draw_text('Easy Mode', small_font, (255, 255, 255), screen, 95, 615)
+
+
+        # easy button logic
+        if easy_but.collidepoint((mx, my)):
+            if click:
+                return
+
+
+        # hard button logic
+        if hard_but.collidepoint((mx, my)):
+            if click:
+                return
+
 
         # legacy button logic
         if legacy_but.collidepoint((mx, my)):

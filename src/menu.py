@@ -3,8 +3,7 @@ import sys
 from pygame.locals import *
 import game
 import os
-import time
-
+import random
 # Setting up window
 master_ticker = pygame.time.Clock()
 pygame.init()
@@ -20,6 +19,12 @@ bg2 = pygame.transform.scale(bg2, (1024, 1000))
 
 bg3 = pygame.image.load("retro3.jpeg")
 bg3 = pygame.transform.scale(bg3, (1024, 1000))
+
+bg4 = pygame.image.load("retro4.jpeg")
+bg4 = pygame.transform.scale(bg4, (1024, 1000))
+
+bg5 = pygame.image.load("retro5.jpeg")
+bg5 = pygame.transform.scale(bg5, (1024, 1000))
 
 play_sprite = pygame.image.load("play.png").convert_alpha()
 play_sprite = pygame.transform.scale(play_sprite, (150, 150))
@@ -38,8 +43,10 @@ grey = (128, 128, 128)
 purple = (128, 0, 128)
 
 # game variables
-speed = 20  # easy mode
+speed = 12  # easy mode
 is_legacy = False
+pics = [bg,bg2,bg3,bg4,bg5]
+
 
 # function to write text
 def draw_text(text, font, color, surface, x, y):
@@ -87,9 +94,12 @@ def event_esc():
 
 
 def main_menu(loop_inc):
+    global is_legacy
     click = False
     # second variable to track game over status
     track_game = False
+    # start music
+    pygame.mixer.music.set_volume(.5)
     pygame.mixer.music.play()
     while True:
         # keep resetting and adding in bgImage
@@ -151,13 +161,14 @@ def main_menu(loop_inc):
 
 
 def game_menu():
+    global loop_inc
     # insert call into game here
     running = True
     screen.fill((0, 0, 0))
     screen.blit(bg2, (0, 0))
     engine = game.Game(is_legacy)
     ticker = 0
-
+    current_background = 1
     while running:
 
         # set up a ticker to control the drop rate
@@ -178,18 +189,21 @@ def game_menu():
 
         master_ticker.tick(60)
         screen.fill((0, 0, 0))
-        screen.blit(bg2, (0, 0))
+        screen.blit(pics[current_background], (0, 0))
         draw_text("score: " + str(engine.score), small_font, white, screen, 20, 60)
         # Draw grid on page
         draw_grid(engine)
-
         # As long as shape currently exists
         if engine.shapes is not None:
             draw_shapes(engine)
+        if engine.song_switch:
+            engine.song_switch = False
+            current_background = random.randint(0,len(pics)-1)
+            loop_inc = loop_inc + 1
+            change_song(loop_inc)
         # check to see if game is over
         if engine.game_over:
             break
-
     if engine.game_over:
         return True
     else:
@@ -279,18 +293,23 @@ def draw_grid(eng):
 
 
 def change_song(loop_inc):
-    if loop_inc >= len(songs):
-        pygame.mixer.music.fadeout(30)
-        pygame.mixer.music.unload()
-        pygame.mixer.music.load(songs[0])
-        pygame.mixer.music.play()
-        return 0
+    global is_legacy
+    # if legacy edition, keep the same songs playing over and over
+    if is_legacy:
+        pygame.mixer.music.play(-1)
     else:
-        pygame.mixer.music.fadeout(30)
-        pygame.mixer.music.unload()
-        pygame.mixer.music.load(songs[loop_inc])
-        pygame.mixer.music.play()
-        return loop_inc
+        if loop_inc >= len(songs):
+            pygame.mixer.music.fadeout(30)
+            pygame.mixer.music.unload()
+            pygame.mixer.music.load(songs[0])
+            pygame.mixer.music.play()
+            return 0
+        else:
+            pygame.mixer.music.fadeout(30)
+            pygame.mixer.music.unload()
+            pygame.mixer.music.load(songs[loop_inc])
+            pygame.mixer.music.play()
+            return loop_inc
 
 
 def options(loop_inc):
@@ -334,19 +353,20 @@ def options(loop_inc):
         # easy button logic
         if easy_but.collidepoint((mx, my)):
             if click:
-                speed = 15
+                speed = 12
                 return
 
         # hard button logic
         if hard_but.collidepoint((mx, my)):
             if click:
-                speed = 5
+                speed = 4
                 return
 
         # legacy button logic
         if legacy_but.collidepoint((mx, my)):
             if click:
                 is_legacy = True
+                change_song(loop_inc)
                 return
 
         if music_but.collidepoint((mx, my)):

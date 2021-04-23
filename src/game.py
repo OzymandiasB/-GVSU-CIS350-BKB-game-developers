@@ -3,6 +3,7 @@ import random
 import shape
 
 
+
 # Game Logic (model)
 class Game:
     level = 1
@@ -10,24 +11,25 @@ class Game:
     score = 10
     board = []
     # How big the board is
-    width = 20
+    width = 15
     height = 30
     shapes = None
     game_over = False
     is_legacy = False
+    song_switch = False
 
-    def __init__(self,is_leg):
+    def __init__(self, is_leg):
         self.is_legacy = is_leg
         # instantiate the board
         for i in range(30):
             line = []  # create new row
-            for j in range(20):
+            for j in range(15):
                 line.append(0)
             self.board.append(line)  # Add row onto board
 
     # Spawn in new Shape in the center
     def new_piece(self):
-        self.shapes = shape.Shape(2, 0, self.is_legacy)
+        self.shapes = shape.Shape(7, 0, self.is_legacy)
         # After spawning new shape, check if game is over
         if self.is_blocked():
             print("Game Over")
@@ -85,7 +87,9 @@ class Game:
             else:  # else clear out the lines
                 counter = counter + 1
                 self.clear_lines(i)
+                self.song_switch = True
         self.score = self.score + counter * 5
+
         # if the score is high enough trigger the power up
         if self.score % 100 == 0:
             self.power_up()

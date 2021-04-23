@@ -11,7 +11,14 @@ We wanted to add our own original twist on top of a classic timeless game, Tetri
 tbd
 
 ## Run Instructions
-tbd
+open your terminal
+make sure you have pip installed, and run the below commands
+git clone https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers.git
+cd -GVSU-CIS350-BKB-game-developers
+cd src
+pip install pygame
+python2.7 menu.py
+Enjoy!
 
 ## TODO
 * Add buttons for song presets 

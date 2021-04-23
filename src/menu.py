@@ -174,7 +174,7 @@ def game_menu():
         # set up a ticker to control the drop rate
         ticker = ticker + 1
         # if the user takes this long just reset
-        if ticker > sys.maxint - 10:
+        if ticker > 50000:
             ticker = 0
         # the lower the right hand side of the modulus, the more the ticker procs
         if ticker % speed == 0:

@@ -2,9 +2,6 @@ import pygame
 import sys
 from pygame.locals import *
 import game
-pygame.draw
-
-
 
 # Setting up window
 master_ticker = pygame.time.Clock()
@@ -29,13 +26,14 @@ play_sprite = pygame.transform.scale(play_sprite, (150, 150))
 pygame.mixer.init()
 pygame.mixer.music.load("koroben.mp3")
 # create array of all songs
-songs = ["koroben.mp3", "farewell8bit.mp3"]
+songs = ["koroben.mp3", "farewell8bit.mp3", "final_countdown.mp3", "under_pressure.mp3", "sold.mp3"]
 # set up fonts to use
 small_font = pygame.font.SysFont(None, 30)
 big_Font = pygame.font.SysFont(None, 100)
 # set up colors
 white = (255, 255, 255)
 grey = (128, 128, 128)
+purple = (128, 0, 128)
 
 
 # function to write text
@@ -50,11 +48,33 @@ click = False
 
 
 # Navigation controls
-def eventCheck():
+def event_check(engine):
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+            # if key is pressed
+        if event.type == KEYDOWN:
+            if event.key == K_ESCAPE:
+                return False
+            if event.key == K_LEFT:
+                engine.shape_left()
+            if event.key == K_RIGHT:
+                engine.shape_right()
+            if event.key == K_UP:
+                engine.shape_rotate()
+            if event.key == K_DOWN:
+                engine.shape_down()
+    return True
+
+
+# Navigation controls for going between menus
+def event_esc():
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+            # if key is pressed
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 return False
@@ -122,14 +142,28 @@ def game_menu():
     screen.fill((0, 0, 0))
     screen.blit(bg2, (0, 0))
     engine = game.Game()
-
+    ticker = 0
+    speed = 10
     while running:
+        # set up a ticker to control the drop rate
+        ticker = ticker + 1
+        # if the user takes this long just reset
+        if ticker > sys.maxint - 10:
+            ticker = 0
+        # the lower the right hand side of the modulus, the more the ticker procs
+        if ticker % speed == 0:
+            engine.shape_down()
+        # create new piece if none exist
         if engine.shapes is None:
             engine.new_piece()
         draw_text('game', small_font, (255, 255, 255), screen, 20, 20)
-        running = eventCheck()
+        # navigation controls
+        running = event_check(engine)
         pygame.display.update()
+
         master_ticker.tick(60)
+        screen.fill((0, 0, 0))
+        screen.blit(bg2, (0, 0))
         # Draw grid on page
         draw_grid(engine)
         # As long as shape currently exists
@@ -138,32 +172,32 @@ def game_menu():
 
 
 def manual():
-
     running = True
     screen.fill((0, 0, 0))
     while running:
-
         mx, my = pygame.mouse.get_pos()
 
         draw_text('Game Manual', small_font, (0, 255, 255), screen, 20, 20)
         draw_text('We have 3 new piece types as shown below', small_font, (0, 255, 255), screen, 20, 60)
-        draw_text('The Pointer Shape!', small_font, (0,255,255), screen, 20, 100)
+        draw_text('The Pointer Shape!', small_font, (0, 255, 255), screen, 20, 100)
         draw_text('The C shape!', small_font, (0, 255, 255), screen, 20, 270)
         draw_text('The J-Block Shape!', small_font, (0, 255, 255), screen, 20, 500)
-        draw_text('This updated version of Tetris is simple to play! Just use your arrow keys to move left and right ', small_font, (0, 255, 255), screen, 20, 715)
-        draw_text('to move falling blocks in the place you wish them to fall! ', small_font, (0, 255, 255), screen, 20, 740)
-        draw_text('These new blocks that are now implemented make the game more fun and stretch your brain a little! ', small_font, (0, 255, 255), screen, 20, 780)
-
+        draw_text('This updated version of Tetris is simple to play! Just use your arrow keys to move left and right ',
+                  small_font, (0, 255, 255), screen, 20, 715)
+        draw_text('to move falling blocks in the place you wish them to fall! ', small_font, (0, 255, 255), screen, 20,
+                  740)
+        draw_text('These new blocks that are now implemented make the game more fun and stretch your brain a little! ',
+                  small_font, (0, 255, 255), screen, 20, 780)
 
         # pointer shape picture
 
-        pygame.draw.rect(screen, (0,255,255) , [75,165,50,50])
+        pygame.draw.rect(screen, (0, 255, 255), [75, 165, 50, 50])
 
         # C shape picture
 
         pygame.draw.rect(screen, (0, 255, 255), [75, 325, 50, 150])
-        pygame.draw.rect(screen, (0, 255, 255), [75, 325, 150, 45]) # top
-        pygame.draw.rect(screen, (0, 255, 255), [75, 430, 150, 45]) # bottom
+        pygame.draw.rect(screen, (0, 255, 255), [75, 325, 150, 45])  # top
+        pygame.draw.rect(screen, (0, 255, 255), [75, 430, 150, 45])  # bottom
 
         # J-Block shape picture
 
@@ -171,18 +205,14 @@ def manual():
         pygame.draw.rect(screen, (0, 255, 255), [75, 655, 150, 45])
         pygame.draw.rect(screen, (0, 255, 255), [175, 610, 50, 90])
 
-
-    # back button implementation
+        # back button implementation
         back_but = pygame.Rect(775, 30, 200, 50)
         pygame.draw.rect(screen, (0, 0, 255), back_but)
         draw_text('ESC to Menu', small_font, (255, 255, 255), screen, 810, 45)
 
-    # back button logic
+        # back button logic
 
-
-
-
-        running = eventCheck()
+        running = event_esc()
         pygame.display.update()
         master_ticker.tick(60)
 
@@ -215,8 +245,9 @@ def draw_grid(eng):
             pygame.draw.rect(screen, grey, rect_coor, 1)
             if eng.board[i][j] != 0:
                 # of there is a shape there
-                rect_coor = [eng.shapes.x + (30 * j) + 1, eng.shapes.y + (30 * i) + 1, 28, 29]
-                pygame.draw.rect(screen, grey, rect_coor)
+                rect_coor = [190 + (30 * j) + 1, 60 + (30 * i) + 1, 28, 29]
+                # color in shapes as purple for that SYNTHHH LOOOK BABBYYYY
+                pygame.draw.rect(screen, purple, rect_coor)
 
 
 def change_song(loop_inc):
@@ -254,7 +285,6 @@ def options(loop_inc):
         # pygame.draw.rect(screen, (0, 150, 0), music_but)
         screen.blit(play_sprite, (50, 250))
 
-
         # display legacy button
         pygame.draw.rect(screen, (0, 0, 255), legacy_but)
         draw_text('Legacy Mode', small_font, (255, 255, 255), screen, 50, 155)
@@ -263,7 +293,6 @@ def options(loop_inc):
         if legacy_but.collidepoint((mx, my)):
             if click:
                 return
-
 
         if music_but.collidepoint((mx, my)):
             if click:
@@ -283,6 +312,7 @@ def options(loop_inc):
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
+
         pygame.display.update()
         master_ticker.tick(60)
 

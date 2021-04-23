@@ -8,22 +8,22 @@ class Game:
     level = 1
     score = 0
     board = []
-    width = 20  # Taken from menu dimensions
-    height = 30  # Taken from menu dimensions
+    width = 10  # Taken from menu dimensions
+    height = 20  # Taken from menu dimensions
     shapes = None
     game_over = False
 
     def __init__(self):
-        # Create dashed marks to simulate the board of tetris
-        for i in range(30):
-            line = []  # create new dash mark array
-            for j in range(20):
+        # instantiate the board
+        for i in range(20):
+            line = []  # create new row
+            for j in range(10):
                 line.append(0)
-                self.board.append(line)  # Add line into board
+            self.board.append(line)  # Add row onto board
 
     # Spawn in new Shape in the center
     def new_piece(self):
-        self.shapes = shape.Shape(0, 3)
+        self.shapes = shape.Shape(3, 0)
         # After spawning new shape, check if game is over
         if self.is_blocked():
             print("Game Over")
@@ -35,26 +35,22 @@ class Game:
         mat_length = 4
         for i in range(mat_length):  # Loop through outer shape Matrix
             for j in range(mat_length):  # Loop through inner shape Matrix
-                blocked = self.bound_check(i, j)
-        return blocked
+                temp = self.shapes.get_shape()  # extract figure to run bound tests
+                board_length = 4
+                # check to see if shape itself can fit on location
+                if temp.__contains__(i * board_length + j):
+                    # Horizontal Axis bound check
+                    if self.width - 1 < j + self.shapes.x:
+                        return True
+                    if j + self.shapes.x < 0:
+                        return True
+                    # Vertical check
+                    if self.height - 1 < i + self.shapes.y:
+                        return True
+                    # Check to see if blocked by another shape
+                    if self.board[i + self.shapes.y][j + self.shapes.x] != 0:  # if 0 then this area was not occupied
+                        return True
 
-    # Check to see if the shape is in bounds (helper)
-    def bound_check(self, row, col):
-        temp = self.shapes.get_shape()  # extract figure to run bound tests
-        board_length = 4
-        # check to see if shape itself can fit on location
-        if temp.__contains__(row * board_length + col):
-            # Horizontal Axis bound check
-            if self.width - 1 < col + self.shapes.x:
-                return True
-            elif col + self.shapes.x < 0:
-                return True
-            # Vertical check
-            elif self.height - 1 < row + self.shapes.y:
-                return True
-            # Check to see if blocked by another shape
-            elif self.board[row + self.shapes.y][col + self.shapes.x] != 0:  # if 0 then this area was not occupied
-                return True
         return False
 
     # Clears Clearable lines aha, i have been debugging this for one hour if this does no work i will shoot myself
@@ -65,7 +61,7 @@ class Game:
         while pt > 1:
             # scan through entire width of board, clearing out each element
             for w in range(self.width):
-                self.board[pt][w] = 0  # make spot on board empty
+                self.board[pt][w] = self.board[pt - 1][w]  # make spot on board empty
 
     # Check to see if lines can be cleared,
     def check_lines(self):
@@ -92,7 +88,6 @@ class Game:
     # Holds shape in place after dropping it.
     def lock_shape(self):
         mat_length = 4
-
         for row in range(mat_length):  # Loop through outer shape Matrix
             for col in range(mat_length):  # Loop through inner shape Matrix
                 temp = self.shapes.get_shape()
@@ -133,7 +128,7 @@ class Game:
         # save previous rotation
         temp = self.shapes.shape_rotation
         # check to see if rotate works
-        self.shape_rotate()
+        self.shapes.rotate()
         # if it doesnt go back to previous rotation
         if self.is_blocked():
             self.shapes.shape_rotation = temp
@@ -144,6 +139,3 @@ class Game:
             # scan through entire width of board, clearing out each element
             for w in range(self.width):
                 self.board[pt][w] = 0  # make spot on board empty
-
-
-

@@ -37,6 +37,9 @@ white = (255, 255, 255)
 grey = (128, 128, 128)
 purple = (128, 0, 128)
 
+# game variables
+speed = 20  # easy mode
+is_legacy = False
 
 # function to write text
 def draw_text(text, font, color, surface, x, y):
@@ -152,9 +155,9 @@ def game_menu():
     running = True
     screen.fill((0, 0, 0))
     screen.blit(bg2, (0, 0))
-    engine = game.Game()
+    engine = game.Game(is_legacy)
     ticker = 0
-    speed = 10
+
     while running:
 
         # set up a ticker to control the drop rate
@@ -291,6 +294,8 @@ def change_song(loop_inc):
 
 
 def options(loop_inc):
+    global speed
+    global is_legacy
     click = False
     running = True
     screen.fill((0, 0, 0))
@@ -314,7 +319,6 @@ def options(loop_inc):
         # pygame.draw.rect(screen, (0, 150, 0), music_but)
         screen.blit(play_sprite, (50, 250))
 
-
         # display legacy button
         pygame.draw.rect(screen, (0, 0, 255), legacy_but)
         draw_text('Legacy Mode', small_font, (255, 255, 255), screen, 90, 155)
@@ -327,22 +331,22 @@ def options(loop_inc):
         pygame.draw.rect(screen, (0, 0, 255), easy_but)
         draw_text('Easy Mode', small_font, (255, 255, 255), screen, 95, 615)
 
-
         # easy button logic
         if easy_but.collidepoint((mx, my)):
             if click:
+                speed = 15
                 return
-
 
         # hard button logic
         if hard_but.collidepoint((mx, my)):
             if click:
+                speed = 5
                 return
-
 
         # legacy button logic
         if legacy_but.collidepoint((mx, my)):
             if click:
+                is_legacy = True
                 return
 
         if music_but.collidepoint((mx, my)):

@@ -3,28 +3,31 @@ import random
 import shape
 
 
-# class that controls the game menu
+# Game Logic (model)
 class Game:
     level = 1
     # start score at 10 so power up works later on
     score = 10
     board = []
-    width = 10  # Taken from menu dimensions
-    height = 20  # Taken from menu dimensions
+    # How big the board is
+    width = 20
+    height = 30
     shapes = None
     game_over = False
+    is_legacy = False
 
-    def __init__(self):
+    def __init__(self,is_leg):
+        self.is_legacy = is_leg
         # instantiate the board
-        for i in range(20):
+        for i in range(30):
             line = []  # create new row
-            for j in range(10):
+            for j in range(20):
                 line.append(0)
             self.board.append(line)  # Add row onto board
 
     # Spawn in new Shape in the center
     def new_piece(self):
-        self.shapes = shape.Shape(3, 0)
+        self.shapes = shape.Shape(2, 0, self.is_legacy)
         # After spawning new shape, check if game is over
         if self.is_blocked():
             print("Game Over")

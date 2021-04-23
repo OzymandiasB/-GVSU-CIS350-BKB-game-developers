@@ -110,11 +110,11 @@ def main_menu(loop_inc):
                 options(loop_inc)
 
         pygame.draw.rect(screen, (150, 0, 0), first_but)
-        draw_text('Play Game', small_font, (255, 255, 255), screen, 50, 100)
+        draw_text('Play Game', small_font, (255, 255, 255), screen, 95, 115)
         pygame.draw.rect(screen, (150, 0, 0), sec_but)
-        draw_text('Game Manual', small_font, (255, 255, 255), screen, 50, 200)
+        draw_text('Game Manual', small_font, (255, 255, 255), screen, 80, 215)
         pygame.draw.rect(screen, (150, 0, 0), opt_but)
-        draw_text('Game Options', small_font, (255, 255, 255), screen, 50, 300)
+        draw_text('Game Options', small_font, (255, 255, 255), screen, 80, 315)
 
         click = False
         # Second Set Navigation Controls

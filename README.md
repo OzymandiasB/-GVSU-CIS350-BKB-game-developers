@@ -8,11 +8,11 @@ We wanted to add our own original twist on top of a classic timeless game, Tetri
 * Blaine Borchardt (Role 5, Role 6)
 
 ## Prerequisites
-tbd
+* Make sure you have pip installed, and run the commands in the Instructions category.
+* Make sure you also have python2.7 (should come naturally with your python environment).
 
 ## Run Instructions
-* open your terminal
-* make sure you have pip installed, and run the below commands
+* Open your terminal.
 * git clone https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers.git
 * cd -GVSU-CIS350-BKB-game-developers
 * cd src

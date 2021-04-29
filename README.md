@@ -21,11 +21,6 @@ We wanted to add our own original twist on top of a classic timeless game, Tetri
 * Enjoy!
 
 ## TODO
-* Add buttons for song presets 
-* Add buttons for Legacy edition
-* Draw Sprite for new pieces under Manual
-* Create Tetris and port it under game Button
-* Add more images (possibly use bitmap cheat conversion to speed things up)
-* Fix Button styling
-* Organize SRC file into images & music folder
+* Add more songs.
+* Add more pictures.
 

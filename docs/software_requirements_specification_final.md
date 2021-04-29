@@ -1,6 +1,7 @@
 # Overview
 <Describe the purpose of this document in 1 paragraph of less … hint: it is
 your SRS>
+
 # Software Requirements
 <Describe the structure of this section>
 ## Functional Requirements
@@ -11,6 +12,7 @@ your SRS>
 | FR2 | <Requirement 2> |
 | FR3 | <Requirement 3> |
 | … | … |
+  
 ### <Name of Feature 2>
 | ID | Requirement |
 | :-------------: | :----------: |
@@ -18,6 +20,7 @@ your SRS>
 | FR5 | <Requirement 2> |
 | FR6 | <Requirement 3> |
 | … | … |
+
 ## Non-Functional Requirements
 ### <Name of Feature 1>
 | ID | Requirement |

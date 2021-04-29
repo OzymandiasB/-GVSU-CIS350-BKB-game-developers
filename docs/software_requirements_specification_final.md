@@ -12,14 +12,18 @@ your SRS>
 | FR1 | <Requirement 1> |
 | FR2 | <Requirement 2> |
 | FR3 | <Requirement 3> |
+| FR4 | <Requirement 1> |
+| FR5 | <Requirement 2> |
 | … | … |
   
 ### <Name of Feature 2>
 | ID | Requirement |
 | :-------------: | :----------: |
-| FR4 | <Requirement 1> |
-| FR5 | <Requirement 2> |
-| FR6 | <Requirement 3> |
+| FR6 | <Requirement 1> |
+| FR7 | <Requirement 2> |
+| FR8 | <Requirement 3> |
+| FR9 | <Requirement 1> |
+| FR10 | <Requirement 2> |
 | … | … |
 
 ## Non-Functional Requirements

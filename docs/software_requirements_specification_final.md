@@ -26,14 +26,14 @@ The section will first list three categories of functional requirements, then li
 ### Media
 | 3.0 | Requirement |
 | :-------------: | :----------: |
-| FR 3.1 | The user shall be allowed to manually set the song in the beginning of the program.                                                         |
+| FR 3.1 | The user shall be allowed to manually set the song in the beginning of the program.        |
 | FR 3.2 | The software shall change the music when the user clears a row. |
 | FR 3.3 | The software shall change the background image when the user clears a row. |
 | FR 3.4 | Navigating to different screens shall change the background images. |
 | FR 3.5 | The software shall change songs after the current song ends. |
 
 ## Non-Functional Requirements
-### <Menu Navigations>
+### Menu Navigations
 | 1.0 | Requirement |
 | :-------------: | :----------: |
 | NFR1.1 | The menu shall have documentation describing game functionality, new block designs, and how to function the game.|

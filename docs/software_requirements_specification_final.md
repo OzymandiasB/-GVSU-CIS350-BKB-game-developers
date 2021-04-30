@@ -23,6 +23,15 @@ The section will first list three categories of functional requirements, then li
 | FR 2.4 | The user shall be able to restart the game from the main menu. |
 | FR 2.5 | The software shall display instructions on how to restart the game when the game is over.|
 
+### Media
+| 2.0 | Requirement |
+| :-------------: | :----------: |
+| FR 2.1 | The user shall be able to navigate the menu screen to access different game options and documentation. |
+| FR 2.2 | The user shall be able to actively change the difficulty while the game is still running by navigating to the options and back to the game. |
+| FR 2.3 | The software shall allow users to set a legacy mode from the menu if they wish to play the original Tetris without all the add-ons. |
+| FR 2.4 | The user shall be able to restart the game from the main menu. |
+| FR 2.5 | The software shall display instructions on how to restart the game when the game is over.|
+
 ## Non-Functional Requirements
 ### <Name of Feature 1>
 | ID | Requirement |

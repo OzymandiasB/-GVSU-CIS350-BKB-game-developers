@@ -64,7 +64,7 @@ The section will first list three categories of functional requirements, then li
 | NFR3.5 | Buttons shall be placed in a manner that allows maximal viewing of background. |
 
 # Software Artifacts
-<This section works to show different diagrams and lists we made during the development of the project.>
+This section works to show different diagrams and lists we made during the development of the project.
 * [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/GANT.pdf](Gantt.pdf)
 * [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/proposal-template.md](Proposal)
 * [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/List_Tasks.pdf](Task list)

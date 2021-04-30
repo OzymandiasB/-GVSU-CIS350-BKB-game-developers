@@ -41,6 +41,18 @@ The section will first list three categories of functional requirements, then li
 | NFR1.3 | The software shall change screens instantaneously when navigating the different menu screens.  |
 | NFR1.4 | The software’s menu shall change difficulties within one second. |
 | NFR1.5 | The user shall be able to access any menu screen of the game from another screen within 2 inputs (click or press escape). |
+
+
+### Media
+| 2.0 | Requirement |
+| :-------------: | :----------: |
+| NFR2.1 | The software shall have different background images for each menu screen.|
+| NFR2.2 | There shall be no buffer or lag in between song changes.|
+| NFR2.3 | The software shall contain a library of five different songs.  |
+| NFR2.4 | The software shall contain a library of five different background images. |
+| NFR2.5 | All song files shall be MPEG-1 Audio Layer III (MP3) format. |
+| NFR2.6 | All the song files shall be Joint Photographic Experts Group (jpeg) format. |
+
 # Software Artifacts
 <Describe the purpose of this section>
 * [I am a link](to_some_file.pdf)

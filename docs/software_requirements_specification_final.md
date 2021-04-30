@@ -36,8 +36,7 @@ The section will first list three categories of functional requirements, then li
 ### <Menu Navigations>
 | 1.0 | Requirement |
 | :-------------: | :----------: |
-| NFR1.1 | The menu shall have documentation describing game functionality, new block designs, and how to function the game.
- |
+| NFR1.1 | The menu shall have documentation describing game functionality, new block designs, and how to function the game.|
 | NFR1.2 | The menu screen background shall not be changed until the user navigates to another page. |
 | NFR1.3 | The software shall change screens instantaneously when navigating the different menu screens.  |
 | NFR1.4 | The software’s menu shall change difficulties within one second. |

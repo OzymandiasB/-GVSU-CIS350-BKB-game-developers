@@ -53,6 +53,16 @@ The section will first list three categories of functional requirements, then li
 | NFR2.5 | All song files shall be MPEG-1 Audio Layer III (MP3) format. |
 | NFR2.6 | All the song files shall be Joint Photographic Experts Group (jpeg) format. |
 
+
+### Design
+| 3.0 | Requirement |
+| :-------------: | :----------: |
+| NFR3.1 | Software shall use a font that is easily readable to the user.|
+| NFR3.2 | Software shall use a red and blue color scheme for buttons that will not interfere with the background image. |
+| NFR3.3 | Software shall use white and turquoise colored font that will not interfere with the background image  |
+| NFR3.4 | Software shall use a window format of (1024, 1000). |
+| NFR3.5 | Buttons shall be placed in a manner that allows maximal viewing of background. |
+
 # Software Artifacts
 <Describe the purpose of this section>
 * [I am a link](to_some_file.pdf)

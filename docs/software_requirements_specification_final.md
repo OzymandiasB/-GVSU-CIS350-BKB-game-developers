@@ -65,11 +65,11 @@ The section will first list three categories of functional requirements, then li
 
 # Software Artifacts
 This section works to show different diagrams and lists we made during the development of the project.
-* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/GANT.pdf](Gantt.pdf)
-* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/proposal-template.md](Proposal)
-* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/List_Tasks.pdf](Task list)
-* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/menu_description](Menu description)
-* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_level.pdf](Case diagram for game)
-* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_manual.pdf](Case diagram for manual)
-* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_menu.pdf](Case diagram menu)
+* [Gantt.pdf](https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/GANT.pdf)
+* [Proposal](https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/proposal-template.md) 
+* [Task list](https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/List_Tasks.pdf)
+* [Menu description](https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/menu_description)
+* [Case diagram for game](https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_level.pdf)
+* [Case diagram for manual](https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_manual.pdf)
+* [Case diagram menu](https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_menu.pdf)
 

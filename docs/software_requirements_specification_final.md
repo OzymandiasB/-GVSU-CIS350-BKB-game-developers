@@ -59,10 +59,17 @@ The section will first list three categories of functional requirements, then li
 | :-------------: | :----------: |
 | NFR3.1 | Software shall use a font that is easily readable to the user.|
 | NFR3.2 | Software shall use a red and blue color scheme for buttons that will not interfere with the background image. |
-| NFR3.3 | Software shall use white and turquoise colored font that will not interfere with the background image  |
+| NFR3.3 | Software shall use white and turquoise colored font that will not interfere with the background image.  |
 | NFR3.4 | Software shall use a window format of (1024, 1000). |
 | NFR3.5 | Buttons shall be placed in a manner that allows maximal viewing of background. |
 
 # Software Artifacts
-<Describe the purpose of this section>
-* [I am a link](to_some_file.pdf)
+<This section works to show different diagrams and lists we made during the development of the project.>
+* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/GANT.pdf](Gantt.pdf)
+* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/proposal-template.md](Proposal)
+* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/docs/List_Tasks.pdf](Task list)
+* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/menu_description](Menu description)
+* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_level.pdf](Case diagram for game)
+* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_manual.pdf](Case diagram for manual)
+* [https://github.com/OzymandiasB/-GVSU-CIS350-BKB-game-developers/blob/master/artifacts/use_case_diagrams/use_case_diagram_menu.pdf](Case diagram menu)
+

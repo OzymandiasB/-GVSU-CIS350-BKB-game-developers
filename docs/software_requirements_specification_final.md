@@ -33,13 +33,15 @@ The section will first list three categories of functional requirements, then li
 | FR 3.5 | The software shall change songs after the current song ends. |
 
 ## Non-Functional Requirements
-### <Name of Feature 1>
-| ID | Requirement |
+### <Menu Navigations>
+| 1.0 | Requirement |
 | :-------------: | :----------: |
-| NFR1 | <Non-Functional Requirement 1> |
-| NFR2 | < Non-Functional Requirement 2> |
-| NFR3 | < Non-Functional Requirement 3> |
-| … | … |
+| NFR1.1 | The menu shall have documentation describing game functionality, new block designs, and how to function the game.
+ |
+| NFR1.2 | The menu screen background shall not be changed until the user navigates to another page. |
+| NFR1.3 | The software shall change screens instantaneously when navigating the different menu screens.  |
+| NFR1.4 | The software’s menu shall change difficulties within one second. |
+| NFR1.5 | The user shall be able to access any menu screen of the game from another screen within 2 inputs (click or press escape). |
 # Software Artifacts
 <Describe the purpose of this section>
 * [I am a link](to_some_file.pdf)
